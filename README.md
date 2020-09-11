@@ -1,5 +1,5 @@
 # Mypackage
-This is a python package that contains some modules useful when dealing with data pre-processin
+This is a python package that contains some modules useful when dealing with data pre-processing
 
 
 droppercent:  drops rows/columns based on threshold, default axis is 0 (rows).
