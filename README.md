@@ -2,7 +2,7 @@
 This is a python package that contains some modules useful when dealing with data pre-processing
 
 
-droppercent:  drops rows/columns based on threshold, default axis is 0 (rows).
+droppercent:  Drop Percent Function which drops rows/columns based on  accepted percentage missing values, default axis is 0 (rows).
 
 loaddf :  takes input a list of paths and output the list of dataframes
 
