@@ -2,7 +2,9 @@
 # Importing required Libraries
 import pandas as pd
 import math
-# Drop Percent Function which drops rows/columns based on threshold, default axis is 0 (rows).
+# Drop Percent Function which drops rows/columns based on  accepted percentage missing values, default axis is 0 (rows).
+# for example : x,y = droppercent(certif,20, axis=1) will return a table in y where the only columns left are one that are atleast 20% filled, 
+# setting threshold to 100 keeps only columns that have no NAN values
 def droppercent(df, threshold, axis=0):
     # Checking types for variable df.
     if isinstance(df, pd.DataFrame):
