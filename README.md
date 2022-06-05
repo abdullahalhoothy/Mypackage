@@ -14,4 +14,6 @@ rowblock: takes file path and returns an iterable (rowblock)
 
 rowcount: takes file path and counts rows (countrows)
 
+remove_outliers: removes outliers from all numeric columns 
+
 

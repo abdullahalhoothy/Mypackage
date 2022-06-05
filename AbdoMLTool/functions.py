@@ -163,3 +163,25 @@ def dflists(paths):
     # Return the dataframe list
     return dflist
 
+
+#################################################
+# Remove outliers from all columns 
+#################################################
+
+##### Removing outliers
+# removing outliers before clustering 
+def remove_outliers(df,excludefirst = 0):
+  print("columns considered ", len(df.columns))
+  for col in df.columns:
+    if (((df[col].dtype)=='float64') | ((df[col].dtype)=='int64')):
+      print("removing outliers from ",col)
+      Q1 = df[col].quantile(0.25)
+      Q3 = df[col].quantile(0.75)
+      IQR = Q3 - Q1
+      print("before removing ",len(df[col]))
+      print("rows removed ",len(df[col][(df[col] <= (Q1 - 1.5 * IQR)) | (df[col] >= (Q3 + 1.5 * IQR)) ]))
+      print("After removing ",len(df[col][(df[col] > (Q1 - 1.5 * IQR))  & (df[col] < (Q3 + 4 * IQR)) ]))
+      df[col] =(df[col][(df[col] > (Q1 - 1.5 * IQR)) & (df[col] < (Q3 + 1.5 * IQR)) ])
+    else:
+      df[col] = df[col]
+  return df
