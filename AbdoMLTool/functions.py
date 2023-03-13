@@ -5,7 +5,29 @@
 import pandas as pd
 
 # Method defination
-def stringgroup(col_substring, df, skipint=0):
+def stringgroup(col_substring: str, df: pd.DataFrame, skipint: int = 0) -> pd.DataFrame:
+    """
+    This function groups the integer values in columns with a substring in their name.
+   Args:
+    - col_substring (str): A substring of the column name to be selected.
+    - df (pd.DataFrame): The dataframe to be processed.
+    - skipint (int): The number of initial columns to skip. Default is 0.
+
+    Returns:
+    - newdf (pd.DataFrame): The modified dataframe with a new column containing the sum of selected columns.
+
+    Raises:
+    - ValueError: If any column with col_substring is not of numeric type.
+
+    Example:
+    >>> data = [(2000,1,5,6,8,9), (2000,2,3,5,4,6)]
+    >>> df = pd.DataFrame(data, columns=['year', 'month', 'soccer goals', 'soccer assist', 'soccer points', 'basketball goals'])
+    >>> ndf = stringgroup('socc', df, 2)
+    >>> print(ndf)
+      year  month  result
+    0  2000      1      19
+    1  2000      2      12
+    """
     # Getting all columns
     cols = [col for col in df.columns[skipint:] if col_substring in col]
     # Deep Copying to a new dataframe
@@ -89,6 +111,22 @@ import math
 # for example : x,y = droppercent(certif,20, axis=1) will return a table in y where the only columns left are one that are atleast 20% filled, 
 # setting threshold to 100 keeps only columns that have no NAN values
 def droppercent(df, threshold, axis=0):
+    """
+    The function droppercent() drops rows/columns from a given Pandas DataFrame based on the accepted percentage of missing values. The function takes in three parameters:
+
+    df (required) - The input Pandas DataFrame that will be processed.
+    threshold (required) - The percentage threshold of missing values that will be used to drop rows/columns.
+    axis (optional) - The axis along which to drop rows/columns. The default value is 0 (rows).
+    The function first checks the input parameters to ensure they are of the correct type. If the input parameters are not of the correct type, an error message is printed, and the function returns without processing.
+
+    The function then calculates the threshold for dropping rows/columns based on the accepted percentage of missing values. The threshold is calculated as the number of non-NaN values in a row/column that is required to be retained.
+
+    The function then drops rows/columns based on the threshold and the axis provided. It returns two values in a list:
+
+    droppedindex - A list of the indices of the rows/columns that were dropped.
+    df - The processed Pandas DataFrame with the rows/columns that have less than the required number of non-NaN values dropped.
+    """
+    
     # Checking types for variable df.
     if isinstance(df, pd.DataFrame):
         pass
